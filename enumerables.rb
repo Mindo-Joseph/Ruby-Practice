@@ -16,6 +16,18 @@ module Enumerable
         array
         
     end
+
+    def my_all?
+        result = true
+        self.my_each { |i| break result = false unless yield(i)}
+        result
+    end
+
+    def my_any?
+        result = false
+        self.my_each { |i| break result = true if yield(i) }
+        result
+    end
 end
 
 test_array = [1,2,3,4,5,9]
@@ -28,3 +40,9 @@ test_array = [1,2,3,4,5,9]
 
 #Calling the my_select 
 #print test_array.my_select { |num| num < 4}
+
+#Calling my_all function
+#print test_array.my_all? { |i| i > 4}
+
+#Calling my_any function
+#print test_array.my_any? { |i| i < 0}
