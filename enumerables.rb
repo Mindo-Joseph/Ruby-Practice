@@ -34,9 +34,16 @@ module Enumerable
         self.my_each { |i| break result = false if yield(i)}
         result
     end
+
+    def my_count(argument)
+        counter = 0
+        self.my_each {|i| counter+=1 if argument == i}
+        counter
+
+    end
 end
 
-test_array = [1,2,3,4,5,9]
+test_array = [1,2,3,3,4,5,9]
 
 #Calling the my_each function
 #test_array.my_each { |i| print i.to_s + " "}
@@ -55,3 +62,6 @@ test_array = [1,2,3,4,5,9]
 
 #Calling the my_none? method
 #print test_array.my_none? { |i| i < 10}
+
+#Call the my_count method
+print test_array.my_count(3)
