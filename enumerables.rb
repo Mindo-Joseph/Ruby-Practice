@@ -41,7 +41,25 @@ module Enumerable
         counter
 
     end
+
+    def my_map(proc=nil)
+        array = []
+        block_given? ?
+        self.my_each { |i| array << yield(i)}
+        self.my_each { |i| array << proc.call(i)}
+        array
+
+    end
+    def my_inject(accumulator=0)
+        self.my_each { |i| accumulator = yield(accumulator, i) }
+        accumulator
+    end
 end
+def multiply_els(array)
+    array.my_inject(1) { |product, i| product * i }
+  end
+  
+  my_proc = Proc.new { |i| i * 2 }
 
 test_array = [1,2,3,3,4,5,9]
 
@@ -64,4 +82,7 @@ test_array = [1,2,3,3,4,5,9]
 #print test_array.my_none? { |i| i < 10}
 
 #Call the my_count method
-print test_array.my_count(3)
+#print test_array.my_count(3)
+
+#Call the my_map function
+print test_array.my_map(my_proc) { |i| i*2}
