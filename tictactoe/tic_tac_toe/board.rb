@@ -2,16 +2,21 @@ class Board
     attr_accessor :field
 
     def initialize
-        @field = []
+        @field = [
+            1, 2, 3,
+            4, 5, 6,
+            7, 8, 9
+        ]
     end
 
     def show
-        puts "#{@field[0]} | #{@field[1]} | #{@field[2]}"
-        puts "---+---+----"
-        puts "#{@field[3]} | #{@field[4]} | #{@field[5]}"
-        puts "---+---+----"
-        puts "#{@field[6]} | #{@field[7]} | #{@field[8]}"
-        puts "---+---+----"
+        puts " #{@field[0]} | #{@field[1]} | #{@field[2]} "
+        puts "---+---+---"
+        puts " #{@field[3]} | #{@field[4]} | #{@field[5]} "
+        puts "---+---+---"
+        puts " #{@field[6]} | #{@field[7]} | #{@field[8]} "
+        puts "---+---+---"
+        puts " \n "
     end
 
     def full?
@@ -31,7 +36,8 @@ class Board
             
             return "O" if condition.all? { |cell| @field[cell] == "O"}
             
-            false
+            
         end
+        false
     end
 end

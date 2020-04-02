@@ -15,12 +15,12 @@ class Game
     def turn(player)
         puts "#{player.name}, pick the cell you want to play"
         pick = gets.chomp
-        cell = pick.to_i -1
-        if @board[cell] == "X" || @board[cell] == "O" || pick.length != 1 || !pick[/[1-9]/]
-            return "Invalid cell"
+        cell = pick.to_i-1
+        if @board.field[cell] == "X" || @board.field[cell] == "O" || pick.length != 1 || !pick[/[1-9]/]
+            puts "Invalid cell"
             self.turn(player)
         else
-            @board.field[cell] == player.sign
+            @board.field[cell] = player.sign
             @board.show
 
         end
@@ -38,9 +38,10 @@ class Game
             puts "Its a tie"
         end
         puts "Want to play again?"
-        answer = gets.chomp.downcase
+       
         valid_yes = ["yes","Y"]
         valid_no = ["no","N"]
+        answer = gets.chomp.downcase
         
         until valid_yes.any? { |item| answer == item} || valid_no.any? {|item| answer == item}
             puts "Give either yes or no "
