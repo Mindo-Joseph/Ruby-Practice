@@ -13,4 +13,8 @@ class Board
         puts "#{@field[6]} | #{@field[7]} | #{@field[8]}"
         puts "---+---+----"
     end
+
+    def full?
+        @field.all? { |cell| cell=="X" || cell == "O"}
+    end
 end
