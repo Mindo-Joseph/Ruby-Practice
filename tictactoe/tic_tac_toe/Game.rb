@@ -11,4 +11,20 @@ class Game
         @board = Board.new
         @board.show
     end
+
+    def turn(player)
+        puts "#{player.name}, pick the cell you want to play"
+        pick = gets.chomp
+        cell = pick.to_i -1
+        if @board[cell] == "X" || @board[cell] == "O" || pick.length != 1 || !pick[/[1-9]/]
+            return "Invalid cell"
+            self.turn(player)
+        else
+            @board.field[cell] == player.sign
+            @board.show
+
+        end
+
+
+    end
 end
