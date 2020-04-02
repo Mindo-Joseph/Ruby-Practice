@@ -27,12 +27,11 @@ class Board
         ]
 
         winning_condition.each do |condition| 
-            return "X"
-            if condition.all? { |cell| @field[cell] == "X"}
-            return "O" 
-            if condition.all? { |cell| @field[cell] == "O"}
-            end
-            return false
+            return "X" if condition.all? { |cell| @field[cell] == "X"}
+            
+            return "O" if condition.all? { |cell| @field[cell] == "O"}
+            
+            false
         end
     end
 end
