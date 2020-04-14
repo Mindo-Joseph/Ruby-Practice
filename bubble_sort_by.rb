@@ -1,18 +1,19 @@
-def bubble_sort_by(array)
-    (array.length).times do
-      swap = 0
-      (array.length-1).times do |i|
-        if yield(array[i], array[i+1]) > 0
-          array[i], array[i+1] = array[i+1], array[i]
-          swap += 1
-        end
+def bubble_sort_by(arr)
+  return arr if arr.size <= 1
+
+  sorted = false
+  until sorted
+    sorted = true
+    (arr.length - 1).times do |i|
+      if yield(arr[i], arr[i + 1]).positive?
+        arr[i], arr[i + 1] = arr[i + 1], arr[i]
+        sorted = false
       end
-      break array if swap == 0
     end
   end
-  
-  sorted_array = bubble_sort_by(["hi","hello","hey","hola"]) do |left,right|
-    left.length - right.length
-  end
-
-print sorted_array
+  arr
+end
+sorted = bubble_sort_by(%w[hello dfhadfhad asg asdgafhafdhadheh dasfhadfhdafhafghafh as]) do |left, right|
+  left.length - right.length
+end
+p sorted 
